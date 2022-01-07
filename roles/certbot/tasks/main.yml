@@ -17,5 +17,5 @@
   with_items: '{{ sites_to_set_up }}'
   when: item.https == true
 
-- name: Add cerbot renewel cronjob
+- name: Add cerbot renewal cronjob
   cron: name="renew letsencrypt certificates" hour="0" minute="0" job="/bin/bash {{ certbot_dir }}/certbot-auto renew --non-interactive --quiet --standalone --pre-hook 'service nginx stop' --post-hook 'service nginx start'"
